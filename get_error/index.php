@@ -12,6 +12,7 @@
 
 
 	function insertData($user, $error) {
+		echo $user;
 		$mysql_server_name='127.0.0.1:3306'; //改成自己的mysql数据库服务器
 		 
 		$mysql_username='root'; //改成自己的mysql数据库用户名
@@ -26,7 +27,7 @@
 		 
 		mysql_select_db($mysql_database); //打开数据库
 		
-		$sql = "INSERT INTO logs (user, error) VALUES ('$user', '$error');";
+		$sql = "INSERT INTO `befe-log`.`logs` (`User-Agent`, `Referer`, `error`) VALUES ('4312asdasdrewd', 'asfas', 'fasdfasdf');";
 		 
 		mysql_query($sql);
 		 

@@ -19,8 +19,9 @@
 
 	while ($one = mysql_fetch_array($result)){ //返回查询结果到数组
 		$user = $one["user"]; //将数据从数组取出
+		$refer = $one["refer"];
 		$error = $one["error"];
-		echo "$user&nbsp;&nbsp;$error<br>";  //输出数据
+		echo "$user&nbsp;&nbsp;$error&nbsp;&nbsp;&nbsp;&nbsp;$refer<br>";  //输出数据
 	}
 
 	mysql_close(); //关闭MySQL连接
