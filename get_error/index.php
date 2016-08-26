@@ -2,17 +2,20 @@
 	$myfile = fopen("../testfile.txt", "a") or die("Unable to open file!");
 	$txt = $_GET['err'];
 	fputs($myfile, $txt . '<br>');
+	$arr = array();
 	foreach (getallheaders() as $name => $value) {
-		if ($name == 'Referer' || $name == 'User-Agent') {
-			fputs($myfile, "$name: $value<br>");
-			insertData($value, $txt);
-		}
+		// if ($name == 'Referer' || $name == 'User-Agent') {
+		// 	fputs($myfile, "$name: $value<br>");
+		// 	insertData($value, $txt);
+		// }
+		$arr[$name] = $value;
 	} 
 	fclose($myfile);
+	// print_r($arr);
+	insertData($arr, $txt);
 
-
-	function insertData($user, $error) {
-		echo $user;
+	function insertData($arr, $error) {
+		// print_r($arr);
 		$mysql_server_name='127.0.0.1:3306'; //改成自己的mysql数据库服务器
 		 
 		$mysql_username='root'; //改成自己的mysql数据库用户名
@@ -26,8 +29,10 @@
 		mysql_query("set names 'utf8'"); //数据库输出编码
 		 
 		mysql_select_db($mysql_database); //打开数据库
-		
-		$sql = "INSERT INTO `befe-log`.`logs` (`User-Agent`, `Referer`, `error`) VALUES ('4312asdasdrewd', 'asfas', 'fasdfasdf');";
+
+		$userAgent = $arr['User-Agent'];
+		$Referer = $arr['Referer'];
+		$sql = "INSERT INTO `befe-log`.`logs` (`User-Agent`, `Referer`, `error`) VALUES ('$userAgent', '$Referer', '$error');";
 		 
 		mysql_query($sql);
 		 

@@ -18,8 +18,8 @@
 	$result = mysql_query($sql);
 
 	while ($one = mysql_fetch_array($result)){ //返回查询结果到数组
-		$user = $one["user"]; //将数据从数组取出
-		$refer = $one["refer"];
+		$user = $one["User-Agent"]; //将数据从数组取出
+		$refer = $one["Referer"];
 		$error = $one["error"];
 		echo "$user&nbsp;&nbsp;$error&nbsp;&nbsp;&nbsp;&nbsp;$refer<br>";  //输出数据
 	}
