@@ -11,12 +11,11 @@
 	$result = mysql_query($sql);
 
  	$arr = array();
- 	$i = 0;
-	while ($one = mysql_fetch_array($result)){ //返回查询结果到数组
+ 	while ($one = mysql_fetch_array($result)){ //返回查询结果到数组
 		$user = $one["User-Agent"]; //将数据从数组取出
 		$refer = $one["Referer"];
 		$error = $one["error"];
-		array_push($arr, array('UserAgent' => $refer, 'Referer' => $refer, 'error' => $error));
+		array_push($arr, array('UserAgent' => $user, 'Referer' => $refer, 'error' => $error));
 		// echo "$user&nbsp;&nbsp;$error&nbsp;&nbsp;&nbsp;&nbsp;$refer<br>";  //输出数据
 	}
 	echo json_encode($arr);
